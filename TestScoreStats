@@ -1,0 +1,41 @@
+/*
+ ============================================================================
+ Name        : new.c
+ Author      : 
+ Version     :
+ Copyright   : Your copyright notice
+ Description : Hello World in C, Ansi-style
+ ============================================================================
+ */
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+#include <limits.h>
+
+int main(void) {
+	setvbuf(stdout, NULL, _IONBF, 0);
+	float min = INT_MAX; float max = INT_MIN; // max and min initializing
+	float standardDev;float average;float sum = 0;float sumSquares = 0;
+	int counter = 0;
+	char input[BUFSIZ];
+	float scores;
+	printf("Please enter scores, one per line, and press <Enter> when done: \n");
+	do {
+		fgets(input, BUFSIZ, stdin);
+		scores = atof(input);
+		if (scores != 0 && min > scores) {
+			min = scores;
+		}
+		if (max < scores) {
+			max = scores;
+		}
+		sum += scores;
+		sumSquares += pow(scores,2);
+		counter++;
+	} while (input[0] != '\n');
+	average = sum / (counter - 1);
+	standardDev = sqrt(((sumSquares) - ((pow(sum,2)) / (counter - 1))) / (counter - 1));
+	printf("%d\t %f\t %f\t %f\t %f\t \n", (counter - 1), min, max, average, standardDev);
+	return EXIT_SUCCESS;
+}
