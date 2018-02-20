@@ -1,0 +1,70 @@
+/*
+ ============================================================================
+ Name        : newton.c
+ Author      : 
+ Version     :
+ Copyright   : Your copyright notice
+ Description : Hello World in C, Ansi-style
+ ============================================================================
+ */
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(void) {
+	FILE *fp;
+	FILE *fp1;
+	int c;
+	int d;
+	int i;
+	setvbuf(stdout, NULL, _IONBF, 0);
+	char input[BUFSIZ];
+	char output[BUFSIZ];
+	printf("Please enter the input file name: \n");
+	scanf("%s", &input);
+	printf("Please enter the output file name: \n");
+	scanf("%s", &output);
+	fp = fopen(input, "r");
+	fp1 = fopen(output, "w");
+	while ((c = fgetc(fp)) != EOF ) {
+
+		switch (c) {
+		case 'A':
+			i++;
+			break;
+		case 'C':
+			i++;
+			break;
+		case 'G':
+			i++;
+			break;
+		case 'T':
+			i++;
+			break;
+
+			// operator is doesn't match any case constant (+, -, *, /)
+		default:
+			printf("Error");
+		}
+		printf("%d", c);
+	}
+//	switch (d) {
+//			case 'A':
+//				i++;
+//				break;
+//			case 'C':
+//				i++;
+//				break;
+//			case 'G':
+//				i++;
+//				break;
+//			case 'T':
+//				i++;
+//				break;
+//
+//				// operator is doesn't match any case constant (+, -, *, /)
+//			default:
+//				printf("Error! operator is not correct");
+//			}
+
+}
