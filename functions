@@ -1,0 +1,74 @@
+/*
+ ============================================================================
+ Name        : newtonium.c
+ Author      : Spencer Barrett
+ Version     :
+ Copyright   : Your copyright notice
+ Description : Hello World in C, Ansi-style
+ ============================================================================
+ */
+
+#include <stdio.h>
+#include <stdlib.h>
+int collatz(int x);
+int computeMaxSequenceLength(int num);
+int computeSequenceLength(int x);
+int computeNextValue(int z);
+int main(void) {
+	FILE *fp;
+	setvbuf(stdout, NULL, _IONBF, 0);
+	int n;
+	char file[1000];
+	printf("Enter a file for output: \n");
+	fgets(file, 1000, stdin);
+	fp = fopen(file, "w");
+	char buffer[BUFSIZ];
+	fgets(buffer, BUFSIZ, stdin);
+	n = atoi(buffer);
+
+	printf("N = %d\n", collatz(n));
+	printf("%d", computeMaxSequenceLength(n));
+	return EXIT_SUCCESS;
+}
+int collatz(int x) { //Collatz conjecture algorithm
+	do {
+		if (x == 1) {
+			return x;
+		} else if (x % 2 == 0) {
+			x = x / 2;
+		} else if (x % 2 != 0) {
+			x = (3 * x) + 1;
+		}
+	} while (x != 1);
+	return x;
+}
+int computeMaxSequenceLength(int num) {
+	int maxLength;
+	int length;
+	for (maxLength = num; maxLength < num; maxLength++) {
+		length = computeSequenceLength(num);
+		length++;
+	}
+
+	return length;
+}
+int computeSequenceLength(int x) {
+	int length;
+	int poo;
+	for (length = x; length < x; length++) {
+		poo = computeNextValue(x);
+	}
+
+	return length;
+}
+int computeNextValue(int z) {
+	if (z == 1) {
+		return z;
+	} else if (z % 2 == 0) {
+		z = z / 2;
+	} else if (z % 2 != 0) {
+		z = (3 * z) + 1;
+	}
+	printf("suh dood: %d\n", z);
+	return z;
+}
