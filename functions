@@ -1,74 +1,56 @@
 /*
  ============================================================================
- Name        : newtonium.c
+ Name        : SBarrettThreeNPlusOne.c
  Author      : Spencer Barrett
  Version     :
  Copyright   : Your copyright notice
  Description : Hello World in C, Ansi-style
  ============================================================================
  */
-
 #include <stdio.h>
 #include <stdlib.h>
-int collatz(int x);
-int computeMaxSequenceLength(int num);
+int computeMaxSequenceLength(int first, last);
 int computeSequenceLength(int x);
-int computeNextValue(int z);
+int computeNextValue(int value);
 int main(void) {
-	FILE *fp;
 	setvbuf(stdout, NULL, _IONBF, 0);
-	int n;
-	char file[1000];
-	printf("Enter a file for output: \n");
-	fgets(file, 1000, stdin);
-	fp = fopen(file, "w");
+	FILE *fp;
+	int first;
+	int last;
 	char buffer[BUFSIZ];
-	fgets(buffer, BUFSIZ, stdin);
-	n = atoi(buffer);
+	printf("Enter a file for output: \n");
+	fgets(buffer, 1000, stdin);
+	fp = fopen(buffer, "w");
 
-	printf("N = %d\n", collatz(n));
-	printf("%d", computeMaxSequenceLength(n));
+	fgets(buffer, BUFSIZ, stdin);
+	first = atoi(buffer);
+	fgets(buffer, BUFSIZ, stdin);
+	last = atoi(buffer);
+	printf("%d", computeMaxSequenceLength(first, last));
 	return EXIT_SUCCESS;
 }
-int collatz(int x) { //Collatz conjecture algorithm
-	do {
-		if (x == 1) {
-			return x;
-		} else if (x % 2 == 0) {
-			x = x / 2;
-		} else if (x % 2 != 0) {
-			x = (3 * x) + 1;
-		}
-	} while (x != 1);
-	return x;
-}
-int computeMaxSequenceLength(int num) {
-	int maxLength;
-	int length;
-	for (maxLength = num; maxLength < num; maxLength++) {
-		length = computeSequenceLength(num);
-		length++;
+
+int computeMaxSequenceLength(int first, int last) {
+	int i, j, maxLength = 1;
+	for (i = first; i <= first; i++) {
+		j = computeSequenceLength(first);
+		maxLength++;
 	}
 
-	return length;
+	return maxLength;
 }
 int computeSequenceLength(int x) {
+	int j;
 	int length;
-	int poo;
-	for (length = x; length < x; length++) {
-		poo = computeNextValue(x);
+	for (j = x; j < x; j++) {
+		length = computeNextValue(x);
 	}
 
 	return length;
 }
-int computeNextValue(int z) {
-	if (z == 1) {
-		return z;
-	} else if (z % 2 == 0) {
-		z = z / 2;
-	} else if (z % 2 != 0) {
-		z = (3 * z) + 1;
-	}
-	printf("suh dood: %d\n", z);
-	return z;
+int computeNextValue(int value) {
+	if (value % 2 == 1)
+		return 3 * value + 1;
+	else
+		return value / 2;
 }
