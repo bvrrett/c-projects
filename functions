@@ -1,52 +1,60 @@
-/*
- ============================================================================
- Name        : SBarrettThreeNPlusOne.c
- Author      : Spencer Barrett
- Version     :
- Copyright   : Your copyright notice
- Description : Hello World in C, Ansi-style
- ============================================================================
- */
 #include <stdio.h>
 #include <stdlib.h>
-int computeMaxSequenceLength(int first, last);
+int computeMaxSequenceLength(int first, int last);
 int computeSequenceLength(int x);
 int computeNextValue(int value);
+
 int main(void) {
 	setvbuf(stdout, NULL, _IONBF, 0);
 	FILE *fp;
-	int first;
-	int last;
+	int first = 0;
+	int last = 0;
 	char buffer[BUFSIZ];
-	printf("Enter a file for output: \n");
-	fgets(buffer, 1000, stdin);
+	printf("Enter a file for output:\n");
+	fgets(buffer, BUFSIZ, stdin);
 	fp = fopen(buffer, "w");
+	do {
+		fgets(buffer, BUFSIZ, stdin);
+		if (buffer[0] == '\n') {
+			first = '\n';
+		} else {
+			first = atoi(buffer);
+			fgets(buffer, BUFSIZ, stdin);
+			last = atoi(buffer);
+			fprintf(fp, "%d\t%d\t%d\n", first, last,
+					computeMaxSequenceLength(first, last));
+			printf("%d\t%d\t%d\n", first, last,
+					computeMaxSequenceLength(first, last));
+		}
 
-	fgets(buffer, BUFSIZ, stdin);
-	first = atoi(buffer);
-	fgets(buffer, BUFSIZ, stdin);
-	last = atoi(buffer);
-	printf("%d", computeMaxSequenceLength(first, last));
+	} while (first != '\n');
+	fclose(fp);
+	printf("complete\n");
 	return EXIT_SUCCESS;
 }
 
 int computeMaxSequenceLength(int first, int last) {
-	int i, j, maxLength = 1;
-	for (i = first; i <= first; i++) {
-		j = computeSequenceLength(first);
-		maxLength++;
-	}
+	int i, maxLength = 1, length = 1;
+	for (i = first; i <= last; i++) {
+		length = computeSequenceLength(i);
 
+		if (length > maxLength)
+			maxLength = length;
+	}
 	return maxLength;
 }
 int computeSequenceLength(int x) {
-	int j;
-	int length;
-	for (j = x; j < x; j++) {
-		length = computeNextValue(x);
+	int length = 0;
+	int i;
+	if (x == 1)
+		return length = 1;
+	else {
+		for (i = x; i != 1; length++) {
+			i = computeNextValue(i);
+		}
 	}
-
 	return length;
+
 }
 int computeNextValue(int value) {
 	if (value % 2 == 1)
@@ -54,3 +62,4 @@ int computeNextValue(int value) {
 	else
 		return value / 2;
 }
+
