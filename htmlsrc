@@ -1,0 +1,38 @@
+/*
+ ============================================================================
+ Name        : newC.c
+ Author      : Spencer Barrett
+ Version     :
+ Copyright   : Your copyright notice
+ Description : Hello World in C, Ansi-style
+ ============================================================================
+ */
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(void) {
+	setvbuf(stdout, NULL, _IONBF, 0);
+	FILE *fp;
+	char urlBuffer[BUFSIZ];
+	char new[BUFSIZ];
+	char tmp[] = { "" };
+	char *tmpPtr = tmp;
+	printf("URL:\n");
+	fgets(urlBuffer, BUFSIZ, stdin);
+	char temp1[] = { "curl -s " };
+	strcat(temp1, urlBuffer);
+	printf(temp1);
+	fp = popen(temp1, "r");
+	printf("Ready\n");
+	do {
+		while (fgets(new, BUFSIZ, fp)) {
+			strcat(tmpPtr, new);
+			printf(&tmp);
+
+		}
+	} while (new != "q");
+	pclose(fp);
+	return EXIT_SUCCESS;
+}
+
