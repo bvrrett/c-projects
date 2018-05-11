@@ -5,25 +5,32 @@
  *      Author: spencerbarrett
  */
 
-#include "Person.h"
+#include "Contact.h"
 
-Contact * AddContact(int *pContactIndex, char *pContactInfo) {
+Contact * AddContact(int contactIndex, char *pContactInfo) {
 	Contact * pContactNewContact = (Contact *) malloc(sizeof(Contact));
-
 	if (pContactNewContact)
 	{
 		strcpy(pContactNewContact->contactInfo, pContactInfo);
-		pContactNewContact->pPrev = NULL;
-		pContactNewContact->pNext = NULL;
+//		pContactNewContact->pPrev = NULL;
+//		pContactNewContact->pNext = NULL;
+		if (contactIndex == 0){
+			pContactNewContact->pPrev = NULL;
+			pContactNewContact->pNext;
+			return pContactNewContact;
+		}else{
+
+		}
+
 	}
 	return pContactNewContact;
 }
 
-Contact * GetContact(int *pContactIndex) {
-	int i;
-	pContactIndex = (Contact *) malloc(sizeof(Contact));
-
-	for(i = 0; i < pContactIndex; i++){
-	
-	}
-}
+//Contact * GetContact(int *pContactIndex) {
+//	int i;
+//	pContactIndex = (Contact *) malloc(sizeof(Contact));
+//
+//	for(i = 0; i < pContactIndex; i++){
+//
+//	}
+//}
