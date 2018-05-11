@@ -1,0 +1,48 @@
+/*
+ ============================================================================
+ Name        : newnew.c
+ Author      : Spencer Barrett
+ Version     :
+ Copyright   : Your copyright notice
+ Description : Hello World in C, Ansi-style
+ ============================================================================
+ */
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include "Person.h"
+
+int main(void) {
+	Contact *pHead = NULL; /* First name in list */
+
+	Contact *pContactCur = NULL; /* current Person */
+	Contact *pContact = NULL; /* temp Person */
+	int bDone = 0;
+	char tempName[1000]; /* temp storage for name entry */
+
+	//////////////////
+	while (!bDone) {
+		/* Display list of names */
+		pContact = pHead;
+		if (pHead)
+			printf("List of names is: ");
+		else
+			printf("List is empty. ");
+		while (pContact) {
+			printf(" %s", pContact->contactInfo);
+			pContact = pContact->pNext;
+		}
+		printf(" \n");
+
+		////
+		int input = atoi(fgets(tempName, 1000, stdin));
+		switch (input) {
+		case 1:
+
+			break;
+		}
+
+	}
+
+	return EXIT_SUCCESS;
+}
