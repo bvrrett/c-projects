@@ -18,6 +18,7 @@ int main(void) {
 	Contact *pContactCur = NULL; /* current Person */
 	Contact *pContact = NULL; /* temp Person */
 	int bDone = 0;
+	int contactIndex = 0;
 	char tempName[1000]; /* temp storage for name entry */
 
 	//////////////////
